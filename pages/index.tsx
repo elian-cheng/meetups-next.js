@@ -1,4 +1,4 @@
-import MeetupList from '@/components/Meetups/MeetupList';
+import MeetupList, { Meetup, MeetupListProps } from '@/components/Meetups/MeetupList';
 
 const DUMMY_MEETUPS = [
   {
@@ -19,7 +19,19 @@ const DUMMY_MEETUPS = [
   },
 ];
 
-const HomePage = () => {
-  return <MeetupList meetups={DUMMY_MEETUPS} />;
+const HomePage = (props: MeetupListProps) => {
+  return <MeetupList meetups={props.meetups} />;
 };
+
+export async function getStaticProps() {
+  // fetch data from an API for prerendering, SSG
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+    // makes next.js to regenerate initial build data for frequently updated pages not only in the build process, but every 1hour for requested page
+    revalidate: 3600,
+  };
+}
+
 export default HomePage;

@@ -9,7 +9,7 @@ export interface Meetup {
   address: string;
 }
 
-interface MeetupListProps {
+export interface MeetupListProps {
   meetups: Meetup[];
 }
 
