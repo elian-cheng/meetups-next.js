@@ -1,14 +1,16 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import Card from '../UI/Card';
 import classes from './MeetupItem.module.css';
+import { Meetup } from './MeetupList';
 
-interface MeetupItemProps {
-  image: string;
-  title: string;
-  address: string;
-}
+const MeetupItem: React.FC<Meetup> = (props) => {
+  const router = useRouter();
 
-const MeetupItem: React.FC<MeetupItemProps> = (props) => {
+  const showDetailsHandler = () => {
+    router.push('/' + props.id);
+  };
+
   return (
     <li className={classes.item}>
       <Card>
@@ -20,7 +22,7 @@ const MeetupItem: React.FC<MeetupItemProps> = (props) => {
           <address>{props.address}</address>
         </div>
         <div className={classes.actions}>
-          <button>Show Details</button>
+          <button onClick={showDetailsHandler}>Show Details</button>
         </div>
       </Card>
     </li>

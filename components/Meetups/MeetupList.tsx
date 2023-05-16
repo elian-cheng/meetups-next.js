@@ -2,7 +2,7 @@ import React from 'react';
 import MeetupItem from './MeetupItem';
 import classes from './MeetupList.module.css';
 
-interface Meetup {
+export interface Meetup {
   id: string;
   image: string;
   title: string;
@@ -19,6 +19,7 @@ const MeetupList: React.FC<MeetupListProps> = (props) => {
       {props.meetups.map((meetup) => (
         <MeetupItem
           key={meetup.id}
+          id={meetup.id}
           image={meetup.image}
           title={meetup.title}
           address={meetup.address}

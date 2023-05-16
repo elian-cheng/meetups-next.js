@@ -6,7 +6,7 @@ interface NewMeetupFormProps {
   onAddMeetup: (meetupData: MeetupData) => void;
 }
 
-interface MeetupData {
+export interface MeetupData {
   title: string;
   image: string;
   address: string;
