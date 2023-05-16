@@ -1,4 +1,6 @@
-import MeetupList, { Meetup, MeetupListProps } from '@/components/Meetups/MeetupList';
+import MeetupList, { MeetupListProps } from '@/components/Meetups/MeetupList';
+import { GetServerSidePropsContext } from 'next';
+// import { NextPageContext } from 'next';
 
 const DUMMY_MEETUPS = [
   {
@@ -23,6 +25,22 @@ const HomePage = (props: MeetupListProps) => {
   return <MeetupList meetups={props.meetups} />;
 };
 
+// SSR (regenerating the page for every incoming request on the server)
+// use only if you need access to req and res objects
+// export async function getServerSideProps(context: GetServerSidePropsContext) {
+//   const req = context.req;
+//   const res = context.res;
+
+//   // fetch data from an API
+
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS,
+//     },
+//   };
+// }
+
+// The faster way, the page can be cached and reused, instead of SSR regenerating it every few sec
 export async function getStaticProps() {
   // fetch data from an API for prerendering, SSG
   return {
