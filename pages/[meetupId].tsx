@@ -38,8 +38,8 @@ export async function getStaticPaths() {
   client.close();
 
   return {
-    // fallback will generate 404 for any other paths, not listed here. fallback true will try to dynamically generate the page with info
-    fallback: false,
+    // fallback false will generate 404 for any other paths, not listed here. fallback true(first show empty page, then content) or blocking(only show page when rendered) will try to dynamically generate the page with info
+    fallback: 'blocking',
     paths: meetups.map((meetup) => ({ params: { meetupId: meetup._id.toString() } })),
     // [
     //   {
